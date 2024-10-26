@@ -1,1 +1,1 @@
-export * from './WindDataChart.tsx'
+export * from './WindDataChart'
