@@ -3,6 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import React, { useMemo } from "react";
 import { createSymbolBase64 } from 'utils/createSymbolBase64.util';
 import { LABELS } from './utils/labels';
+import dayjs from 'dayjs';
 
 export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
 
@@ -34,12 +35,21 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
     }
   });
 
+
   const option = {
     xAxis: {
       type: 'time',
       axisLabel: {
-        formatter: (value: number) => new Date(value).toLocaleTimeString(),
-      },
+        formatter: function(value: number) {
+          var date = dayjs(value);
+          var minutes = date.minute();
+
+          if (minutes % 15 === 0) {
+            return date.format('HH:mm');
+          }
+          return '';
+        }
+      }
     },
     yAxis: {
       type: 'value',
@@ -59,8 +69,7 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
         },
         label: {
           show: true,
-          formatter: (params: any) => {
-            console.log(params.data)
+          formatter: (params: { data: { symbol: string, symbolSize: number, value: Array<number> } }) => {
             return `${params.data.value[2]}°`
           },
         },
