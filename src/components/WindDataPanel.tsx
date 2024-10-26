@@ -6,8 +6,7 @@ import { WindDataChart } from './Chart';
 interface Props extends PanelProps<SimpleOptions> { }
 
 
-export const SimplePanel: React.FC<Props> = ({ data, width, height }) => {
-  console.log(width, height)
+export const WindDataPanel: React.FC<Props> = ({ data, width, height }) => {
   return (
     <div>
       <WindDataChart data={data} height={height} width={width} />

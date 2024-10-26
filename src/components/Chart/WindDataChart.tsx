@@ -2,6 +2,7 @@ import { WindDataChartProps } from './types';
 import ReactEcharts from 'echarts-for-react'
 import React, { useMemo } from "react";
 import { createSymbolBase64 } from 'utils/createSymbolBase64.util';
+import { LABELS } from './utils/labels';
 
 export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
 
@@ -11,8 +12,10 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
   const directionField = useMemo(() => windData.find(field => field.name === 'wind_direction')?.values || [], [windData]);
 
   if (timeField.length !== speedField.length || timeField.length !== directionField.length) {
-    console.error("Data arrays have different lengths!");
-    return <div>Error: Data arrays have different lengths!</div>;
+    console.error(`${LABELS.ErrorMessage}`);
+    return <div>
+      <h2>{`${LABELS.Error}${LABELS.ErrorMessage}`}</h2>
+    </div>;
   }
 
   const baseSize = Math.min(width, height) * 0.05;
@@ -43,7 +46,7 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
       min: 0,
       max: 10,
       axisLabel: {
-        formatter: '{value} m/s',
+        formatter: `{value} ${LABELS.WindSpeedMeasure}`,
       },
     },
     series: [
