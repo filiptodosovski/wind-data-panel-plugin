@@ -41,8 +41,8 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
       type: 'time',
       axisLabel: {
         formatter: function(value: number) {
-          var date = dayjs(value);
-          var minutes = date.minute();
+          const date = dayjs(value);
+          const minutes = date.minute();
 
           if (minutes % 15 === 0) {
             return date.format('HH:mm');
