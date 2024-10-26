@@ -69,7 +69,7 @@ export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
         },
         label: {
           show: true,
-          formatter: (params: { data: { symbol: string, symbolSize: number, value: Array<number> } }) => {
+          formatter: (params: { data: { symbol: string, symbolSize: number, value: number[] } }) => {
             return `${params.data.value[2]}°`
           },
         },
