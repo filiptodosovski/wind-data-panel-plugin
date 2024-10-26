@@ -1,8 +1,8 @@
-import { IWindDataChart } from "./types";
+import { WindDataChartProps } from './types';
 import ReactEcharts from 'echarts-for-react'
 import React from "react";
 
-export const WindDataChart = ({ data, width, height }: IWindDataChart) => {
+export const WindDataChart = ({ data, width, height }: WindDataChartProps) => {
   const option = {
     xAxis: {
       type: 'time',

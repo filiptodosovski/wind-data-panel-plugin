@@ -1,6 +1,6 @@
 import { PanelData } from "@grafana/data";
 
-export interface IWindDataChart {
+export interface WindDataChartProps {
   data: PanelData
   width: number
   height: number
